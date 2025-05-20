@@ -410,7 +410,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 480292}
-  - component: {fileID: 3304137336780282896}
   m_Layer: 2
   m_Name: SelfPropelledArtillery_02_Prefeb
   m_TagString: Untagged
@@ -434,42 +433,6 @@ Transform:
   - {fileID: 431780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3304137336780282896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53abe981b1174131ae6c7fb40268dc11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchInputAction:
-    m_Name: Touch Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9526a24d-f015-4b3f-9cf0-65e5eb01f14b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 79609b67-c3bc-42f0-a49a-54c8061a97b1
-      m_Path: <Touchscreen>/primaryTouch/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Touch Input
-      m_Flags: 0
-    m_Flags: 0
-  turretTransform: {fileID: 484214}
-  raycastMaxDistance: 1000
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  ease: 21
-  rotationSpeed: 50
 --- !u!1 &123194
 GameObject:
   m_ObjectHideFlags: 0
