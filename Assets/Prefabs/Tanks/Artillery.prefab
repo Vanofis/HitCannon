@@ -58,7 +58,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 120866, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6614374614722796309}
+      addedObject: {fileID: 3875343287664762068}
   m_SourcePrefab: {fileID: 100100000, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
 --- !u!4 &604776372828875079 stripped
 Transform:
@@ -70,7 +70,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 120866, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
   m_PrefabInstance: {fileID: 604776372828949041}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6614374614722796309
+--- !u!114 &3875343287664762068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,31 +79,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 604776372828967443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53abe981b1174131ae6c7fb40268dc11, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b1da9b04d1a453a949459ae9de4dd86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchInputAction:
-    m_Name: Touch Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2408b644-73f9-462e-9b57-20ef3844da6b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: dfe7652c-4891-49c3-9dfc-8374a037696e
-      m_Path: <Touchscreen>/primaryTouch/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Touch Input
-      m_Flags: 0
-    m_Flags: 0
-  turretTransform: {fileID: 604776372828875079}
-  deadZoneRadius: 10
-  raycastMaxDistance: 1000
-  raycastLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  ease: 21
-  rotationSpeed: 50
+  targetTransform: {fileID: 604776372828875079}
+  rotationSpeed: 10
+  maxAngle: 75
