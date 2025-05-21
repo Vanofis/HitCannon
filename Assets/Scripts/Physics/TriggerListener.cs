@@ -7,7 +7,10 @@ namespace Physics
     [RequireComponent(typeof(Collider))]
     public class TriggerListener : MonoBehaviour
     {
-        [Space]
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Data
+        
         [Header("Events")]
         [SerializeField]
         private UnityEvent onTriggerEnter = new();
@@ -18,7 +21,13 @@ namespace Physics
         
         private bool _wasTriggered;
         private List<Collider> _enteredColliders = new();
+        
+        #endregion
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Trigger events
+        
         private void OnTriggerEnter(Collider other)
         {
             _wasTriggered = true;
@@ -33,6 +42,12 @@ namespace Physics
             _enteredColliders.Remove(other);
         }
 
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Unity events
+        
         private void LateUpdate()
         {
             _enteredColliders.RemoveAll(x => !x);
@@ -50,5 +65,9 @@ namespace Physics
             _wasTriggered = false;
             onEmptyTrigger?.Invoke();
         }
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

@@ -6,6 +6,10 @@ namespace Features.Game
 {
     public class GameState : MonoBehaviour
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Data
+        
         [SerializeField] 
         private UnityEvent onGameWin;
         [SerializeField] 
@@ -18,12 +22,24 @@ namespace Features.Game
         private int _currentTanksDestroyed = 0;
         
         public static GameState CurrentState { get; private set; }
+        
+        #endregion
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Unity events
+        
         private void Awake()
         {
             CurrentState ??= this;
         }
+        
+        #endregion
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Public
+        
         public void OnTankReached()
         {
             onGameLose?.Invoke();
@@ -51,5 +67,9 @@ namespace Features.Game
                 resetable.ResetObject();
             }
         }
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

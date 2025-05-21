@@ -1,11 +1,15 @@
-﻿
+﻿using UnityEngine;
 using Features.Tools;
-using UnityEngine;
 
 namespace Features.Artillery
 {
     public class CannonRotator : MonoBehaviour
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Data
+        
+        
         [SerializeField] 
         private float rotationSpeed = 20f;
         [SerializeField] 
@@ -13,6 +17,12 @@ namespace Features.Artillery
 
         private bool _useCalculation = true;
 
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Unity events
+        
         private void Update()
         {
             Quaternion targetRotation = Quaternion.Euler(
@@ -35,6 +45,12 @@ namespace Features.Artillery
             }
         }
 
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Public
+        
         public void SetCalculatedRotation()
         {
             _useCalculation = true;
@@ -44,5 +60,9 @@ namespace Features.Artillery
         {
             _useCalculation = false;
         }
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

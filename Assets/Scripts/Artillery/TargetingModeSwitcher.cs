@@ -1,6 +1,6 @@
-﻿using Features.Game;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using Features.Game;
 
 namespace Features.Artillery
 {
@@ -45,9 +45,9 @@ namespace Features.Artillery
             }
         }
 
-        public void Switch(bool canSwitch)
+        public void Switch(bool state)
         {
-            this.canSwitch = canSwitch;
+            this.canSwitch = state;
         }
 
         public void ResetObject()

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
-using UnityEngine.Serialization;
 
 namespace Features.UI
 {
     public class UIFadeGroup : MonoBehaviour
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Data
+            
         [Serializable]
         private class FadeGroup
         {
@@ -29,6 +32,12 @@ namespace Features.UI
 
         private Sequence _sequence;
         
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Public
+        
         public void FadeGroups(int endValue)
         {
             endValue = (int)Mathf.Clamp01(endValue);
@@ -45,7 +54,13 @@ namespace Features.UI
                 AddCallback(endValue, group);
             }
         }
+        
+        #endregion
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Private
+        
         private void AddCallback(int endValue, FadeGroup group)
         {
             if (endValue == 1)
@@ -57,5 +72,9 @@ namespace Features.UI
                 _sequence.onPlay += () => group.onFadeOut?.Invoke();
             }
         }
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

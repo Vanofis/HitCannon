@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Features.Tools;
 using Features.Units;
 
@@ -7,6 +6,10 @@ namespace Features.Artillery
 {
     public class Projectile : MonoBehaviour
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Data
+        
         [Min(0f)]
         [SerializeField] 
         private float damage = 1f;
@@ -26,6 +29,12 @@ namespace Features.Artillery
         private Vector3 _start;
         private Vector3 _end;
         private float _maxAltitude;
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Unity events
         
         private void Update()
         {
@@ -49,6 +58,12 @@ namespace Features.Artillery
             Instantiate(particlesPrefab, transform.position, Quaternion.identity);
         }
 
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Public
+        
         public void Init(Vector3 start, Vector3 end, float maxAltitude)
         {
             _start = start;
@@ -65,5 +80,9 @@ namespace Features.Artillery
             
             Destroy(gameObject);
         }
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

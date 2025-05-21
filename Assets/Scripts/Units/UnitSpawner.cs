@@ -7,6 +7,10 @@ namespace Features.Units
 {
     public class UnitSpawner : MonoBehaviour, IResetable
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Data
+        
         [Serializable]
         private struct RandomNumber
         {
@@ -35,6 +39,12 @@ namespace Features.Units
         public float EditorSpawnRange => spawnRange;
 #endif
 
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Unity events
+        
         private void Awake()
         {
             _nextSpawnTimeStamp = Time.time + timeBeforeFirstSpawn.GetRandomNumber();
@@ -54,11 +64,21 @@ namespace Features.Units
 
             _nextSpawnTimeStamp = Time.time + spawnInterval.GetRandomNumber();
         }
+        
+        #endregion
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Public
+        
         public void ResetObject()
         {
             _currentTankIndex = 0;
             _nextSpawnTimeStamp = Time.time + timeBeforeFirstSpawn.GetRandomNumber();
         }
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

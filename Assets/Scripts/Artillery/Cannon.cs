@@ -1,6 +1,6 @@
-﻿using Features.Game;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using Features.Game;
 
 namespace Features.Artillery
 {

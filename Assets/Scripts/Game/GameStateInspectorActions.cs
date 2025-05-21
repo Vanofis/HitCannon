@@ -13,10 +13,5 @@ namespace Features.Game
         {
             GameState.CurrentState.OnTankDestroyed();
         }
-
-        public void ResetGame()
-        {
-            GameState.CurrentState.ResetGame();
-        }
     }
 }

@@ -5,6 +5,10 @@ namespace Features.Units
 {
     public class Health : MonoBehaviour
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        #region Data
+        
         [Min(0)] 
         [SerializeField] 
         private float maxHealth = 2;
@@ -20,12 +24,24 @@ namespace Features.Units
 
         private float _currentHealth;
 
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Unity events
+        
         private void Awake()
         {
             _currentHealth = maxHealth;
             onHealthPercentChanged?.Invoke(1f);
         }
+        
+        #endregion
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        #region Public
+        
         public void Damage(float damage)
         {
             _currentHealth -= damage;
@@ -41,5 +57,9 @@ namespace Features.Units
             onDeath?.Invoke();
             Destroy(gameObject);
         }
+        
+        #endregion
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }
