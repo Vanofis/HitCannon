@@ -61,7 +61,6 @@ MonoBehaviour:
   - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
   - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
   - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
-  - {fileID: 2333739739910495273, guid: 359c1a5cabe01dd48a5d615c4fe05f56, type: 3}
   - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
 --- !u!1 &4038494761526349774
 GameObject:
@@ -223,7 +222,6 @@ MonoBehaviour:
   - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
   - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
   - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
-  - {fileID: 6750394544136716598, guid: eb1d57522a11bb44d82f96200d37cdb2, type: 3}
   - {fileID: 2333739739910495273, guid: 359c1a5cabe01dd48a5d615c4fe05f56, type: 3}
 --- !u!1 &6887607694460433982
 GameObject:
@@ -373,21 +371,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b61199b3a114b479d0766ef9b5497c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onGameWin:
+  onGameStart:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Features.UI.UIFadeGroup, Assembly-CSharp
-        m_MethodName: FadeGroups
-        m_Mode: 3
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onGameWin:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
@@ -404,6 +405,33 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: YOU LOST
+          m_BoolArgument: 0
+        m_CallState: 2
+  onGameEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Features.UI.UIFadeGroup, Assembly-CSharp
+        m_MethodName: FadeGroups
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Features.UI.UIFadeGroup, Assembly-CSharp
         m_MethodName: FadeGroups
         m_Mode: 3
@@ -415,6 +443,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onReset:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
         m_MethodName: set_text
@@ -422,9 +453,36 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 0
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Features.UI.UIFadeGroup, Assembly-CSharp
+        m_MethodName: FadeGroups
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: YOU LOST
+          m_StringArgument: 0
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTanksDestroyedChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   tanksDestroyedRequired: 20
@@ -496,6 +554,70 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 667902903376717799}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 667902903376717799}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetRotationSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: ResetRotationSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Features.Movement.AngularRotation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Features.Movement.AngularRotation, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_FloatArgument
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeEnabled.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965562904316912463, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+      propertyPath: onTargetingModeDisabled.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7894553689640935514, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
       propertyPath: projectilePrefab
       value: 
@@ -512,6 +634,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1479085906355461305}
   m_SourcePrefab: {fileID: 100100000, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+--- !u!114 &667902903376717799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5874405370923369658, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
+  m_PrefabInstance: {fileID: 6395897250109743965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1da9b04d1a453a949459ae9de4dd86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5811422809833078088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 604776372828872213, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}

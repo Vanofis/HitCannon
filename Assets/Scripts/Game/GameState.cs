@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Features.Game
 {
@@ -9,11 +10,19 @@ namespace Features.Game
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         #region Data
-        
+
         [SerializeField] 
-        private UnityEvent onGameWin;
+        private UnityEvent<string> onGameStart = new();
         [SerializeField] 
-        private UnityEvent onGameLose;
+        private UnityEvent onGameWin = new();
+        [SerializeField] 
+        private UnityEvent onGameLose = new();
+        [SerializeField] 
+        private UnityEvent onGameEnd = new();
+        [SerializeField] 
+        private UnityEvent onReset = new();
+        [SerializeField]
+        private UnityEvent<string> onTanksDestroyedChanged = new();
 
         [Space]
         [Min(0)]
@@ -32,6 +41,7 @@ namespace Features.Game
         private void Awake()
         {
             CurrentState ??= this;
+            onGameStart?.Invoke(tanksDestroyedRequired.ToString());
         }
         
         #endregion
@@ -43,16 +53,19 @@ namespace Features.Game
         public void OnTankReached()
         {
             onGameLose?.Invoke();
+            onGameEnd?.Invoke();
         }
         
         public void OnTankDestroyed()
         {
             _currentTanksDestroyed++;
-            Debug.Log(_currentTanksDestroyed);
+            _currentTanksDestroyed = Mathf.Clamp(_currentTanksDestroyed, 0, tanksDestroyedRequired);
+            onTanksDestroyedChanged.Invoke(_currentTanksDestroyed.ToString());
 
             if (_currentTanksDestroyed == tanksDestroyedRequired)
             {
                 onGameWin?.Invoke();
+                onGameEnd?.Invoke();
             }
         }
 
@@ -66,6 +79,8 @@ namespace Features.Game
             {
                 resetable.ResetObject();
             }
+            
+            onReset?.Invoke();
         }
         
         #endregion
