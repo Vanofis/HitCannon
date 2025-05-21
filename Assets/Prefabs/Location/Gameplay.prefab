@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 604776372828872213, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.13
+      value: 7.78
       objectReference: {fileID: 0}
     - target: {fileID: 604776372828872213, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,14 +83,6 @@ PrefabInstance:
     - target: {fileID: 604776372828967443, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
       propertyPath: m_Name
       value: Artillery
-      objectReference: {fileID: 0}
-    - target: {fileID: 3875343287664762068, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
-      propertyPath: maxAngle
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3875343287664762068, guid: ad0f5653dcbda5c408f48eb18f9fdab3, type: 3}
-      propertyPath: rotationSpeed
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
