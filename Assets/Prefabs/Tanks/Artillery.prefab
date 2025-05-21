@@ -56,6 +56,38 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 0}
   m_Size: {x: 5, y: 5, z: 5}
   m_FadeFactor: 1
+--- !u!1 &4057156076071478955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1652905935653018393}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1652905935653018393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057156076071478955}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.20559, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2716263887459481244}
+  m_Father: {fileID: 604776372828787503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5947147524887636942
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,9 +134,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4c18b13ac1459ca1a920b50c2072b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.75
-  maxDistance: 3.5
-  deadZone: 3.5
+  initialProgress: 0
+  moveSpeed: 1.25
+  motionDelta: {x: 0, y: 0, z: 2.5}
+  onMotionStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onMotionEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9053727171272488417
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +324,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 484214, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 370222527245497863}
+    - targetCorrespondingSourceObject: {fileID: 432414, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1652905935653018393}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 120866, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
       insertIndex: -1
@@ -296,7 +337,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 156632, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5874405370923369658}
+    - targetCorrespondingSourceObject: {fileID: 156798, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9111156704009203560}
   m_SourcePrefab: {fileID: 100100000, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
+--- !u!4 &604776372828787503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 432414, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
+  m_PrefabInstance: {fileID: 604776372828949041}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &604776372828875079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 484214, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
@@ -411,6 +460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonCooldown: 3
+  maxAltitude: 10
+  startPoint: {fileID: 1652905935653018393}
+  endPoint: {fileID: 370222527245497863}
+  projectilePrefab: {fileID: 0}
   onShoot:
     m_PersistentCalls:
       m_Calls:
@@ -450,6 +503,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9111156704009203560}
+        m_TargetAssemblyTypeName: Features.Artillery.CannonRotator, Assembly-CSharp
+        m_MethodName: SetDefaultRotation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2716263887459481233}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onReloaded:
     m_PersistentCalls:
       m_Calls:
@@ -477,12 +554,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 9111156704009203560}
+        m_TargetAssemblyTypeName: Features.Artillery.CannonRotator, Assembly-CSharp
+        m_MethodName: SetCalculatedRotation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onReloadPercentChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
-        m_MethodName: set_value
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -510,5 +599,175 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionTransform: {fileID: 604776372828875079}
-  rotationSpeed: 1.5
+  rotationSpeed: 2
   maxAngle: 30
+  onLeftHalfEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onLeftHalfExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRightHalfEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onRightHalfExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &604776372829072975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 156798, guid: fed7968bb0eba4a1690bbdbf43815fdc, type: 3}
+  m_PrefabInstance: {fileID: 604776372828949041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9111156704009203560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604776372829072975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a38a70e28f486894a2cff6659d6453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 20
+  cannon: {fileID: 7894553689640935514}
+--- !u!1001 &3431879040708148659
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1652905935653018393}
+    m_Modifications:
+    - target: {fileID: 725748389098120094, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807713, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_Name
+      value: CFXR Explosion Smoke 2 Solo (HDR)
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807726, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: clearBehavior
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000059604645
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748390055121424, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725748390129463916, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+--- !u!1 &2716263887459481233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  m_PrefabInstance: {fileID: 3431879040708148659}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2716263887459481244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 725748389856807727, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  m_PrefabInstance: {fileID: 3431879040708148659}
+  m_PrefabAsset: {fileID: 0}

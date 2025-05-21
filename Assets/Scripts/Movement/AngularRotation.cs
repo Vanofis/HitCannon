@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Features.Game;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Features.Movement
 {
-    public class AngularRotation : MonoBehaviour
+    public class AngularRotation : MonoBehaviour, IResetable
     {
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -109,6 +110,15 @@ namespace Features.Movement
                 onLeftHalfEnter?.Invoke();
                 onRightHalfExit?.Invoke();
             }
+        }
+
+        public void ResetObject()
+        {
+            _currentProgress = 0;
+            directionTransform.localRotation = Quaternion.identity;
+            
+            PauseProgression();
+            ResetRotationSpeed();
         }
         
         #endregion

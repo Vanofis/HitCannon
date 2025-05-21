@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Features.Game;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Features.Artillery
 {
-    public class TargetingModeSwitcher : MonoBehaviour
+    public class TargetingModeSwitcher : MonoBehaviour, IResetable
     {
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -47,6 +48,12 @@ namespace Features.Artillery
         public void Switch(bool canSwitch)
         {
             this.canSwitch = canSwitch;
+        }
+
+        public void ResetObject()
+        {
+            SwitchTargetingMode(false);
+            Switch(true);
         }
         
         #endregion

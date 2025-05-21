@@ -7,9 +7,6 @@ namespace Physics
     [RequireComponent(typeof(Collider))]
     public class TriggerListener : MonoBehaviour
     {
-        [SerializeField]
-        private Collider trigger;
-        
         [Space]
         [Header("Events")]
         [SerializeField]
@@ -21,18 +18,6 @@ namespace Physics
         
         private bool _wasTriggered;
         private List<Collider> _enteredColliders = new();
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            trigger ??= GetComponent<Collider>();
-            
-            if (trigger)
-            {
-                trigger.isTrigger = true;
-            }
-        }
-#endif
 
         private void OnTriggerEnter(Collider other)
         {

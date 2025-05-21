@@ -1,30 +1,34 @@
-﻿using UnityEngine;
+﻿using Features.Game;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Features.Movement
 {
-    public class LinearMotion : MonoBehaviour
+    public class LinearMotion : MonoBehaviour, IResetable
     {
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         
         #region Data
-        
-        [SerializeField] 
-        private float moveSpeed = 3f;
-        
-        [Space]
-        [SerializeField] 
-        private float maxDistance = 27f;
-        [SerializeField] 
-        private float deadZone = 20f;
 
+        [Range(0f, 1f)]
+        [SerializeField] 
+        private float initialProgress;
+        [SerializeField] 
+        private float moveSpeed = 1f;
+        [SerializeField] 
+        private Vector3 motionDelta;
+        private Vector3 _initialPosition;
+
+        [Space] 
+        [SerializeField] 
+        private UnityEvent onMotionStart = new ();
+        [SerializeField] 
+        private UnityEvent onMotionEnd = new();
+        
         private float _targetProgress;
         private float _currentProgress;
-        
-#if UNITY_EDITOR
-        public float EditorCurrentProgress => _currentProgress;
-        public float EditorMaxDistance => maxDistance;
-        public float EditorDeadZone => deadZone;
-#endif
+
+        private Vector3 CurrentDistance => _initialPosition + motionDelta * _currentProgress;
         
         #endregion
         
@@ -34,7 +38,8 @@ namespace Features.Movement
 
         private void Awake()
         {
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, deadZone);
+            _targetProgress = initialProgress;
+            _initialPosition = transform.localPosition;
         }
         
         private void Update()
@@ -45,8 +50,12 @@ namespace Features.Movement
             }
             
             _currentProgress = Mathf.MoveTowards(_currentProgress, _targetProgress, moveSpeed * Time.deltaTime);
-            transform.localPosition = 
-                new Vector3(transform.localPosition.x, transform.localPosition.y, _currentProgress * maxDistance + deadZone);
+            transform.localPosition = CurrentDistance;
+            
+            if (Mathf.Approximately(_currentProgress, _targetProgress))
+            {
+                onMotionEnd?.Invoke();
+            }
         }
         
         #endregion
@@ -54,15 +63,24 @@ namespace Features.Movement
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         #region Public
+
+        public void ResetObject()
+        {
+            _currentProgress = initialProgress;
+            transform.localPosition = CurrentDistance;
+            PauseProgression();
+        }
         
         public void SetTargetProgress(float progress)
         {
             _targetProgress = Mathf.Clamp01(progress);
+            onMotionStart?.Invoke();
         }
 
         public void PauseProgression()
         {
             _targetProgress = _currentProgress;
+            onMotionEnd?.Invoke();
         }
         
         #endregion
