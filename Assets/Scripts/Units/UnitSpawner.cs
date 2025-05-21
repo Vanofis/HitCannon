@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Features.Game;
 using UnityEngine;
+using Features.Game;
 
 namespace Features.Units
 {
