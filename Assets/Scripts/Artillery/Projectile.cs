@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Features.Tools;
 using Features.Units;
+using UnityEngine.Events;
 
 namespace Features.Artillery
 {
@@ -22,7 +23,7 @@ namespace Features.Artillery
 
         [Space] 
         [SerializeField] 
-        private GameObject particlesPrefab;
+        private UnityEvent onHit = new();
         
         private float _currentProgress;
         
@@ -53,11 +54,6 @@ namespace Features.Artillery
             Explode(false, col);
         }
 
-        private void OnDestroy()
-        {
-            Instantiate(particlesPrefab, transform.position, Quaternion.identity);
-        }
-
         #endregion
         
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,6 +69,8 @@ namespace Features.Artillery
         
         private void Explode(bool decreaseDamage, Collider col = null)
         {
+            onHit?.Invoke();
+            
             if (col && col.gameObject.TryGetComponent(out Health health))
             {
                 health.Damage(damage * (decreaseDamage ? 0.75f : 1f));

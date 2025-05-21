@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1536972309956537395}
   - component: {fileID: 7658661813719309915}
   - component: {fileID: 3104586295910069804}
+  - component: {fileID: 5059580665546668015}
   m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
@@ -184,4 +185,31 @@ MonoBehaviour:
   damage: 1
   projectileSpeed: 25
   trackSmoothness: 30
-  particlesPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5059580665546668015}
+        m_TargetAssemblyTypeName: Features.Tools.ObjectSpawner, Assembly-CSharp
+        m_MethodName: SpawnPrefabInstance
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8111991315782071555}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5059580665546668015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666804131527401719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770c217e368f4ccda72fe5d1210b3dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6373093304848376752, guid: 772281ae8a01144499818bf5bac834e5, type: 3}
