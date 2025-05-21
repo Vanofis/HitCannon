@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.75
-  maxDistance: 2.5
+  maxDistance: 3.5
   deadZone: 3.5
 --- !u!1 &9053727171272488417
 GameObject:

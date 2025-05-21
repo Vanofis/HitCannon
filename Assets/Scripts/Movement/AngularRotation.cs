@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Features.Movement
 {
@@ -18,6 +19,16 @@ namespace Features.Movement
         [Min(0f)]
         [SerializeField]
         private float maxAngle = 30f;
+
+        [Header("Events")] 
+        [SerializeField] 
+        private UnityEvent onLeftHalfEnter = new();
+        [SerializeField]
+        private UnityEvent onLeftHalfExit = new();
+        [SerializeField] 
+        private UnityEvent onRightHalfEnter = new();
+        [SerializeField]
+        private UnityEvent onRightHalfExit = new();
         
         private float _targetProgress;
         private float _currentProgress;
@@ -82,6 +93,22 @@ namespace Features.Movement
         public void PauseProgression()
         {
             _targetProgress = _currentProgress;
+
+            if (_targetProgress <= 0.15f && _targetProgress >= -0.15f)
+            {
+                onRightHalfEnter?.Invoke();
+                onLeftHalfEnter?.Invoke();
+            }
+            else if (_targetProgress <= 0f)
+            {
+                onRightHalfEnter?.Invoke();
+                onLeftHalfExit?.Invoke();
+            }
+            else if (_targetProgress >= 0f)
+            {
+                onLeftHalfEnter?.Invoke();
+                onRightHalfExit?.Invoke();
+            }
         }
         
         #endregion
